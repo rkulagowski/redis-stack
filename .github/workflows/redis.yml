@@ -413,8 +413,10 @@ jobs:
         security unlock-keychain -p ${{ secrets.MACOS_KEYCHAIN_PASSWORD }} installer.keychain
         security import installer.certificate.p12 -k installer.keychain -P "${{ secrets.MAC_INSTALLER_CERTIFICATE_PASSWORD }}"
         security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k ${{ secrets.MACOS_KEYCHAIN_PASSWORD }} installer.keychain
+        set -x
+        security find-identity
         PRODUCTSIGN_IDENTITY=`security find-identity |grep 3rd|head -n 1|cut -d "\"" -f 2-2`
-        productsign --sign "${PRODUCTSIGN_IDENTITY}
+        productsign --sign "${PRODUCTSIGN_IDENTITY} \
           *.pkg \ 
           redis-stack-server_signed.pkg
 
