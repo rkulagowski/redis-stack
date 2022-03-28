@@ -411,7 +411,7 @@ jobs:
         security create-keychain -p ${{ secrets.MACOS_KEYCHAIN_PASSWORD }} installer.keychain
         security default-keychain -s installer.keychain
         security unlock-keychain -p ${{ secrets.MACOS_KEYCHAIN_PASSWORD }} installer.keychain
-        security import installer.certificate.p12 -k installer.keychain -P "${{ secrets.MAC_INSTALLER_CERTIFICATE_PASSWORD }}"
+        security import installer_certificate.p12 -k installer.keychain -P '${{ secrets.MAC_INSTALLER_CERTIFICATE_PASSWORD }}' -T /usr/bin/codesign -T /usr/bin/productsign
         security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k ${{ secrets.MACOS_KEYCHAIN_PASSWORD }} installer.keychain
         set -x
         security find-identity
