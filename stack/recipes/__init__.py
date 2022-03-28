@@ -136,7 +136,7 @@ class Recipe(object):
 
     def osxpkg(self, fpmargs, distribution):
         fpmargs.append(
-            f"-p {self.C.get_key(self.PACKAGE_NAME)['product']}-{self.version}.{distribution}.{self.ARCH}.osxpkg"
+            f"-p {self.C.get_key(self.PACKAGE_NAME)['product']}-{self.version}.{distribution}.{self.ARCH}.pkg"
         )
         fpmargs.append("-t osxpkg")
         return fpmargs
