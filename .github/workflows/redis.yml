@@ -401,7 +401,7 @@ jobs:
         CODESIGN_IDENTITY=`security find-identity -v|head -n 1|cut -d "\"" -f 2-2`
         codesign --options=runtime --timestamp -v --sign \
           "${CODESIGN_IDENTITY}" \
-          --entitlements etc/entitlements.mac.list \
+          --entitlements etc/entitlements.mac.plist \
           --deep -f *.pkg 
 
     # productsign things
